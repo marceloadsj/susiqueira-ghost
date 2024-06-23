@@ -43,7 +43,6 @@ RUN set -eux; \
 ENV GHOST_INSTALL /var/lib/ghost
 ENV GHOST_CONTENT /var/lib/ghost/content
 ENV GHOST_VERSION 5.999.0
-ENV DB_HOST ${DB_HOST}
 
 COPY ghost-5.999.0.tgz /var/lib
 COPY docker-entrypoint.sh /var/lib
@@ -59,7 +58,7 @@ RUN set -eux; \
 	savedAptMark="$(apt-mark showmanual)"; \
 	aptPurge=; \
 	\
-	installCmd='gosu node ghost install --archive /var/lib/ghost-5.999.0.tgz --db sqlite3 --no-prompt --no-stack --no-setup --dir "$GHOST_INSTALL"'; \
+	installCmd='gosu node ghost install --archive /var/lib/ghost-5.999.0.tgz --db sqlite3 --dbpath /var/lib/ghost/content/ghost_dev.db --no-prompt --no-stack --no-setup --dir "$GHOST_INSTALL"'; \
 	if ! eval "$installCmd"; then \
 		aptPurge=1; \
 		apt-get update; \
@@ -69,12 +68,8 @@ RUN set -eux; \
 	\
 # Tell Ghost to listen on all ips and not prompt for additional configuration
 	cd "$GHOST_INSTALL"; \
-	gosu node ghost config --no-prompt --ip '::' --port 2368 --url 'http://localhost:2368'; \
+	gosu node ghost config --no-prompt --ip '::' --port 2368 --url 'https://susiqueira-testing-ghost.refront.dev'; \
 	gosu node ghost config paths.contentPath "$GHOST_CONTENT"; \
-	\
-# make a config.json symlink for NODE_ENV=development (and sanity check that it's correct)
-	# gosu node ln -s config.production.json "$GHOST_INSTALL/config.development.json"; \
-	readlink -f "$GHOST_INSTALL/config.development.json"; \
 	\
 # need to save initial content for pre-seeding empty volumes
 	mv "$GHOST_CONTENT" "$GHOST_INSTALL/content.orig"; \
