@@ -45,8 +45,8 @@ ENV GHOST_CONTENT /var/lib/ghost/content
 ENV GHOST_VERSION 5.999.0
 ENV DB_HOST ${DB_HOST}
 
-COPY ghost-5.999.0.tgz .
-COPY docker-entrypoint.sh .
+COPY ghost-5.999.0.tgz /var/lib
+COPY docker-entrypoint.sh /var/lib
 
 RUN set -eux; \
 	mkdir -p "$GHOST_INSTALL"; \
@@ -59,7 +59,7 @@ RUN set -eux; \
 	savedAptMark="$(apt-mark showmanual)"; \
 	aptPurge=; \
 	\
-	installCmd='gosu node ghost install --archive ghost-5.999.0.tgz --db mysql --dbhost $DB_HOST --no-prompt --no-stack --no-setup --dir "$GHOST_INSTALL"'; \
+	installCmd='gosu node ghost install --archive /var/lib/ghost-5.999.0.tgz --db mysql --dbhost $DB_HOST --no-prompt --no-stack --no-setup --dir "$GHOST_INSTALL"'; \
 	if ! eval "$installCmd"; then \
 		aptPurge=1; \
 		apt-get update; \
@@ -122,7 +122,8 @@ RUN set -eux; \
 	gosu node yarn cache clean; \
 	gosu node npm cache clean --force; \
 	npm cache clean --force; \
-	rm -rv /tmp/yarn* /tmp/v8*
+	rm -rv /tmp/yarn* /tmp/v8*; \
+	cp /var/lib/docker-entrypoint.sh .
 
 WORKDIR $GHOST_INSTALL
 VOLUME $GHOST_CONTENT
