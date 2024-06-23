@@ -73,7 +73,7 @@ RUN set -eux; \
 	gosu node ghost config paths.contentPath "$GHOST_CONTENT"; \
 	\
 # make a config.json symlink for NODE_ENV=development (and sanity check that it's correct)
-	gosu node ln -s config.production.json "$GHOST_INSTALL/config.development.json"; \
+	# gosu node ln -s config.production.json "$GHOST_INSTALL/config.development.json"; \
 	readlink -f "$GHOST_INSTALL/config.development.json"; \
 	\
 # need to save initial content for pre-seeding empty volumes
