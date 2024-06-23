@@ -33,7 +33,7 @@ RUN set -eux; \
 	gosu --version; \
 	gosu nobody true
 
-ENV NODE_ENV production
+ENV NODE_ENV development
 
 ENV GHOST_CLI_VERSION 1.26.0
 RUN set -eux; \
@@ -59,7 +59,7 @@ RUN set -eux; \
 	savedAptMark="$(apt-mark showmanual)"; \
 	aptPurge=; \
 	\
-	installCmd='gosu node ghost install --archive /var/lib/ghost-5.999.0.tgz --db sqlite3 --dbpath ./ghost_dev.db --no-prompt --no-stack --no-setup --dir "$GHOST_INSTALL"'; \
+	installCmd='gosu node ghost install --archive /var/lib/ghost-5.999.0.tgz --db sqlite3 --no-prompt --no-stack --no-setup --dir "$GHOST_INSTALL"'; \
 	if ! eval "$installCmd"; then \
 		aptPurge=1; \
 		apt-get update; \
