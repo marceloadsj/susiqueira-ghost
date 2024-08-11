@@ -52,6 +52,10 @@
     transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
 }
 
+.canvas-close {
+    color: var(--darker-gray-color);
+}
+
 .post-image,
 .kg-gallery-image img,
 .pswp__img {
