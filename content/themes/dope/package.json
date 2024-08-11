@@ -45,18 +45,18 @@
             "title_font": {
                 "type": "select",
                 "options": [
-                    "Modern sans-serif",
-                    "Elegant serif"
+                    "Lato",
+                    "Montserrat"
                 ],
-                "default": "Modern sans-serif"
+                "default": "Lato"
             },
             "body_font": {
                 "type": "select",
                 "options": [
-                    "Modern sans-serif",
-                    "Elegant serif"
+                    "Lato",
+                    "Montserrat"
                 ],
-                "default": "Modern sans-serif"
+                "default": "Montserrat"
             },
             "show_author": {
                 "type": "boolean",
