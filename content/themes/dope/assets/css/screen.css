@@ -16,3 +16,92 @@
 @import "misc/portal.css";
 @import "misc/owl.css";
 @import "misc/utilities.css";
+
+/* Fixes from og theme */
+.single-post {
+    margin-bottom: 90px;
+}
+
+.read-more, .widget-title {
+    text-transform: none;
+}
+
+.burger {
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, 0.25);
+    border: none;
+    border-color: transparent;
+    width: 30px;
+    height: 30px;
+}
+
+.home-template .burger,
+.owl .owl-next, .owl .owl-prev {
+    width: 30px;
+    height: 30px;
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.burger:after, .burger:before {
+    background-color: var(--white-color);
+}
+
+.off-canvas {
+    border-radius: 4px 0px 0px 4px;
+    transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.post-image,
+.kg-gallery-image img,
+.pswp__img {
+    border-radius: 4px;
+}
+
+.single-post .post-media .post-header {
+    margin-bottom: 0px;
+}
+
+.post-author-image {
+    border: none;
+}
+
+.u-placeholder {
+    background-color: transparent;
+}
+
+/* Fixes from ghost */
+.gh-foot {
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.gh-foot-inner {
+    gap: 20px;
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: var(--color-darker-gray);
+        color: var(--color-secondary-text);
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        color: var(--color-lighter-gray);
+    }
+
+    a {
+        color: var(--color-lighter-gray);
+    }
+
+    /* From og theme */
+    .off-canvas {
+        background-color: var(--color-darker-gray);
+    }
+
+    /* From ghost */
+    .gh-foot a:hover {
+        color: var(--color-lighter-gray);
+    }
+}

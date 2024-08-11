@@ -9,6 +9,7 @@ content/*
 content_bkp/
 current
 .ghostpid
+dist/
 
 # osx
 .DS_Store
