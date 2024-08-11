@@ -1,0 +1,14 @@
+# javascript
+*node_modules/
+
+# ghostjs
+versions/
+config.development.json
+content/*
+!content/themes
+content_bkp/
+current
+.ghostpid
+
+# osx
+.DS_Store
